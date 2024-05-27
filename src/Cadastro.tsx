@@ -5,6 +5,7 @@ import { EntradaTexto } from './componentes/EntradaTexto';
 import { Titulo } from './componentes/Titulo';
 import { secoes } from './utils/CadastroEntradaTexto';
 import { useState } from 'react';
+import { cadastrarPaciente } from './servicos/PacienteServico';
 
 
 export default function Cadastro(navigation: any) {
@@ -20,9 +21,7 @@ export default function Cadastro(navigation: any) {
         else {
             console.log(dados)
             console.log(planos)
-            toast.show({
-                title: "Cadastro com sucesso",
-                backgroundColor: "green.500",})
+            cadastrar()
         }
     }
 
@@ -35,6 +34,42 @@ export default function Cadastro(navigation: any) {
     function atualizarDados(id: string, valor: string) {
         setDados({ ...dados, [id]: valor })
     }
+
+    async function cadastrar() {
+        const resultado = await cadastrarPaciente({
+            cpf: dados.cpf,
+            nome: dados.nome,
+            email: dados.email,
+            endereco: {
+                cep: dados.cep,
+                rua: dados.rua,
+                numero: dados.numero,
+                estado: dados.estado,
+                complemento: dados.complemento
+            },
+            senha: dados.senha,
+            telefone: dados.telefone,
+            possuiPlanoSaude: planos.length>0,
+            planosSaude: planos,
+            imagem: dados.imagem
+    })
+
+
+
+    if(resultado){
+        toast.show({
+            title: "Cadastro com sucesso",
+            description: "Já pode fazer o login",
+            backgroundColor: "green.500",})
+            navigation.replace('Login')
+    } else{
+        toast.show({
+            title: "Erro ao cadastrar",
+            description: "Verifique os dados e tente novamente",
+            backgroundColor: "red.500",})
+    }
+
+}
 
     return (
         <ScrollView flex={1} p={5}>
