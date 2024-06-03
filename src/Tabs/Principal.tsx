@@ -30,7 +30,7 @@ export default function Principal(){
         <VStack space={3} divider={<Divider />} w="100%">
           {
             depoimentos.map(depoimento => (
-              <Box key={depoimento.id} w="100%" shadow={2} borderRadius="lg" p={3}>
+              <Box key={depoimento.id} w="100%" borderRadius="lg" p={3}>
                 <Text color="gray.300" fontSize="md" textAlign="justify">
                   {depoimento.text}
                 </Text>
