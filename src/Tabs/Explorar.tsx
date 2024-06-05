@@ -5,7 +5,6 @@ import { EntradaTexto } from "../componentes/EntradaTexto";
 import { Titulo } from "../componentes/Titulo";
 import { buscarEspecialistaPorEstado } from "../servicos/EspecialistaServico";
 import { useState } from "react";
-import { agendarConsulta } from "../servicos/ConsultaServico";
 
 interface Especialista {
   nome: string,
@@ -45,6 +44,7 @@ export default function Explorar({ navigation }) {
           <Botao mt={3} mb={3} onPress={buscar}>
             Buscar
           </Botao>
+          <Botao mt={1} onPress={() => navigation.goBack()}>Voltar</Botao>
         </Box>
 
         <Titulo color="blue.500" alignSelf="center">Resultado da Busca</Titulo>
