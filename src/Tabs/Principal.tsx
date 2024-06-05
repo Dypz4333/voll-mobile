@@ -27,7 +27,7 @@ export default function Principal(){
         </Box>
 
         <Titulo color="blue.800" alignSelf="center">Depoimentos</Titulo>
-        <VStack space={3} divider={<Divider />} w="100%">
+        <VStack shadow={2} space={3} divider={<Divider />} w="100%">
           {
             depoimentos.map(depoimento => (
               <Box key={depoimento.id} w="100%" borderRadius="lg" p={3}>

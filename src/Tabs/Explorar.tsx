@@ -48,6 +48,11 @@ export default function Explorar({ navigation }) {
         </Box>
 
         <Titulo color="blue.500" alignSelf="center">Resultado da Busca</Titulo>
+        {resultadoBusca.length < 1 && (
+          <Titulo alignSelf={"center"}>
+            Médico não encontrado
+          </Titulo>
+        )}
         {resultadoBusca?.map((especialista: Especialista, index) => (
           <VStack flex={1} w="100%" alignItems="flex-start" bgColor="white" key={index}>
             <CardConsulta
